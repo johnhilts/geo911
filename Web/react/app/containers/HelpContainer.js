@@ -21,6 +21,10 @@ var HelpContainer = React.createClass({
     this.getInfo();
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    this.getInfo();
+  },
+
   getInfo: function() {
     var helpers = this.state.helpers;
     var hasSetup = helpers && (helpers.length > 0);
