@@ -13,7 +13,7 @@ var HelpContainer = React.createClass({
     return {
       hasSetup: false,
       helpers: [],
-      helpers: this.props.location.state.helpers ? this.props.location.state.helpers : []
+      helpers: this.props.location && this.props.location.state.helpers ? this.props.location.state.helpers : []
     }
   },
 
