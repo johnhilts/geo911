@@ -11,6 +11,12 @@ var SetupContainer = React.createClass({
 		router: React.PropTypes.object.isRequired
 	},
 
+	getInitialState: function() {
+		return {
+			'helpers': {}
+		}
+	},
+
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount : function() {
@@ -21,19 +27,20 @@ var SetupContainer = React.createClass({
 	},
 
   handleSubmit: function(event) {
-
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
-		this.state.helpers['helper-' + timestamp] = event.target[0].value;
+		var helper = {key: 'helper-' + timestamp, callNumber: event.target[0].value};
+
+		this.state.helpers[helper.key] = helper;
+
 		// set the state
-		this.setState({ fishes : this.state.helpers });
-		// alert('You added ' + this.state.helpers[0]);
+		this.setState({ helpers : this.state.helpers });
   },
 
 	handleUpdateNumber: function(event) {
     this.setState({
-        helpers: [event.target.value]
+        inputHelper: [event.target.value]
       })
 	},
 
@@ -42,7 +49,7 @@ var SetupContainer = React.createClass({
     this.context.router.push({
       pathname: '/help',
       state: {
-        helpers: ['test']
+        helpers: this.state.helpers
       }
     })
 
@@ -50,11 +57,14 @@ var SetupContainer = React.createClass({
 
   render: function() {
     return (
-      <Setup
-        onSubmit={this.handleSubmit}
-        onUpdateNumber={this.handleUpdateNumber}
-        onHelpClick={this.handleHelpClick}
-      />
+			<div>
+	      <Setup
+					helpers={this.state.helpers}
+	        onSubmit={this.handleSubmit}
+	        onUpdateNumber={this.handleUpdateNumber}
+	        onHelpClick={this.handleHelpClick}
+	      />
+			</div>
     )
   }
 });
