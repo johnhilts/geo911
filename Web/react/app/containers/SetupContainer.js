@@ -30,17 +30,25 @@ var SetupContainer = React.createClass({
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
-		var helper = {key: 'helper-' + timestamp, callNumber: event.target[0].value};
+		var helper = {key: 'helper-' + timestamp, theName: event.target[0].value, callNumber: event.target[1].value};
 
 		this.state.helpers[helper.key] = helper;
 
 		// set the state
 		this.setState({ helpers : this.state.helpers });
+
+		event.target.reset();
   },
 
-	handleUpdateNumber: function(event) {
+	handleUpdateTheName: function(event) {
     this.setState({
-        inputHelper: [event.target.value]
+        inputHelperName: [event.target.value]
+      })
+	},
+
+	handleUpdateCallNumber: function(event) {
+    this.setState({
+        inputHelperNumber: [event.target.value]
       })
 	},
 
@@ -61,7 +69,8 @@ var SetupContainer = React.createClass({
 	      <Setup
 					helpers={this.state.helpers}
 	        onSubmit={this.handleSubmit}
-	        onUpdateNumber={this.handleUpdateNumber}
+	        onUpdateTheName={this.handleUpdateTheName}
+	        onUpdateCallNumber={this.handleUpdateCallNumber}
 	        onHelpClick={this.handleHelpClick}
 	      />
 			</div>
