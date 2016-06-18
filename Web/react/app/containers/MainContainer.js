@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactRouter = require('react-router');
+var Link = require('react-router').Link;
 
 var styles = {
   header: {
@@ -15,7 +16,11 @@ function MainContainer(props) {
     return (
       <div>
         <div style={styles.header}>
-          <h1>Header</h1>
+          <div>
+            <h1>
+              <Link to="/">geo911</Link>
+            </h1>
+          </div>
         </div>
         <div style={styles.container}>
           {props.children}
