@@ -49,6 +49,10 @@ function SetupHelpers(props) {
 
 var Setup = function(props) {
   return (
+    props.isLoading
+    ?
+    <div style={{background: 'red',}}>L O A D I N G ...</div>
+    :
     <SetupHelpers {...props} />
   )
 }

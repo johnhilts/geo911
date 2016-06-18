@@ -13,7 +13,8 @@ var SetupContainer = React.createClass({
 
 	getInitialState: function() {
 		return {
-			'helpers': {}
+			'helpers': {},
+			isLoading: true,
 		}
 	},
 
@@ -22,7 +23,10 @@ var SetupContainer = React.createClass({
 	componentDidMount : function() {
 		base.syncState('noname/helpers', {
 			context : this,
-			state : 'helpers'
+			state : 'helpers',
+			then(d) {
+				this.setState({isLoading: false,});
+			},
 		});
 	},
 
@@ -68,6 +72,7 @@ var SetupContainer = React.createClass({
 			<div>
 	      <Setup
 					helpers={this.state.helpers}
+					isLoading={this.state.isLoading}
 	        onSubmit={this.handleSubmit}
 	        onUpdateTheName={this.handleUpdateTheName}
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
