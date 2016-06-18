@@ -21,13 +21,17 @@ var SetupContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount : function() {
-		base.syncState('noname/helpers', {
+		this.ref = base.syncState('noname/helpers', {
 			context : this,
 			state : 'helpers',
 			then(d) {
 				this.setState({isLoading: false,});
 			},
 		});
+	},
+
+	componentWillUnmount: function() {
+		base.removeBinding(this.ref);
 	},
 
   handleSubmit: function(event) {
