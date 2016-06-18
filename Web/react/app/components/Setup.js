@@ -1,11 +1,15 @@
 var React = require('react');
 
 function ItemHelper(props) {
-    return (
-      <li>
-        {props.helper.callNumber}
-      </li>
-    )
+  var helperInfo = props.helper.theName + ' (' + props.helper.callNumber + ')';
+  if (helperInfo.length > 17) {
+    helperInfo = helperInfo.substring(0, 17) + '...';
+  }
+  return (
+    <li>
+      {helperInfo.substring(0, 20)}
+    </li>
+  )
 }
 
 function ListHelpers(props){
