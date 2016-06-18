@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = require('react-router').Link;
+var UserPrompt = require('../components/UserPrompt');
 
 var styles = {
   header: {
@@ -20,6 +21,9 @@ function MainContainer(props) {
             <h1>
               <Link to="/">geo911</Link>
             </h1>
+          </div>
+          <div>
+            <UserPrompt />
           </div>
         </div>
         <div style={styles.container}>
