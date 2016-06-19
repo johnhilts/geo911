@@ -13,7 +13,19 @@ var styles = {
   }
 }
 
-function MainContainer(props) {
+var MainContainer = React.createClass({
+  getInitialState: function() {
+    return {
+      uid: 0,
+    }
+  },
+
+  handleAuthorization: function(uid) {
+    console.log('auth-ing user: ' + uid);
+    return this.setState({uid: uid});
+  },
+
+  render: function() {
     return (
       <div>
         <div style={styles.header}>
@@ -27,13 +39,14 @@ function MainContainer(props) {
           </div>
         </div>
         <div style={styles.container}>
-          {props.children}
+          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, uid: this.state.uid })}
         </div>
         <div>
           <p>Footer</p>
         </div>
       </div>
     )
-};
+  }
+});
 
 module.exports = MainContainer;
