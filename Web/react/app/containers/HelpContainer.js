@@ -13,26 +13,25 @@ var HelpContainer = React.createClass({
     return {
       hasSetup: false,
       helpers: [],
-      helpers: this.props.location && this.props.location.state.helpers ? this.props.location.state.helpers : []
     }
   },
 
   componentDidMount: function() {
-    this.getInfo();
+    this.getInfo(this.props);
   },
 
   componentWillReceiveProps: function(nextProps) {
-    this.getInfo();
+    this.getInfo(nextProps);
   },
 
-  getInfo: function() {
-    var helpers = this.state.helpers;
-    var hasSetup = helpers && (helpers.length > 0);
+  getInfo: function(props) {
+    var helpers = props.user.helpers;
+    var hasSetup = helpers;
     if (!hasSetup) {
       this.context.router.push({
         pathname: '/setup',
         state: {
-          helpers: []
+          helpers: {}
         }
       })
     }

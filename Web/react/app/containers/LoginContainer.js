@@ -40,7 +40,7 @@ var LoginContainer = React.createClass({
           alert('invalid email or password');
         }
 
-        this.props.onAuthorize(user.key);
+        this.props.onAuthorize(user);
 
         this.context.router.push('/');
       },

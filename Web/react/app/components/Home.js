@@ -1,6 +1,7 @@
 var React = require('react');
 var Main = require("../containers/MainContainer");
 var HelpContainer = require("../containers/HelpContainer")
+var LoginContainer = require("../containers/LoginContainer")
 
 var styles = {
   container: {
@@ -21,11 +22,14 @@ var styles = {
 
 function Home (props) {
   return (
-    <div style={styles.container}>
-      <p>Home area</p>
-      <HelpContainer />
-    </div>
-
+    props.user && props.user.key !== 0
+    ?
+      <div style={styles.container}>
+        <p>Home area</p>
+        <HelpContainer user={props.user} />
+      </div>
+    :
+      <div><LoginContainer user={props.user} onAuthorize={props.onAuthorize} /></div>
   )
 }
 

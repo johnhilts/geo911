@@ -35,7 +35,7 @@ var RegisterContainer = React.createClass({
 
 		var timestamp = (new Date()).getTime();
     var user = {
-      key: 'users-' + timestamp,
+      key: 'user-' + timestamp,
       userName: event.target[0].value,
       email: event.target[1].value,
       password: event.target[2].value,
@@ -45,7 +45,7 @@ var RegisterContainer = React.createClass({
 
     this.setState({ users : this.state.users});
 
-    this.props.onAuthorize(user.key);
+    this.props.onAuthorize(user);
 
     this.context.router.push('/');
   },

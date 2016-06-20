@@ -15,14 +15,19 @@ var styles = {
 
 var MainContainer = React.createClass({
   getInitialState: function() {
+    var user = {key: 0};
     return {
-      uid: 0,
+      user: user,
     }
   },
 
-  handleAuthorization: function(uid) {
-    console.log('auth-ing user: ' + uid);
-    return this.setState({uid: uid});
+  handleAuthorization: function(user) {
+    return this.setState({user: user});
+  },
+
+  handleDeauthorization: function() {
+    var user = {key: 0};
+    return this.setState({user: user});
   },
 
   render: function() {
@@ -35,11 +40,11 @@ var MainContainer = React.createClass({
             </h1>
           </div>
           <div>
-            <UserPrompt />
+            <UserPrompt user={this.state.user} onDeauthorize={this.handleDeauthorization} />
           </div>
         </div>
         <div style={styles.container}>
-          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, uid: this.state.uid })}
+          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user })}
         </div>
         <div>
           <p>Footer</p>
