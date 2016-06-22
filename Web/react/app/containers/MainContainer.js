@@ -16,17 +16,26 @@ var styles = {
 var MainContainer = React.createClass({
   getInitialState: function() {
     var user = {key: 0};
+
+		var localStorageRef = localStorage.getItem('user');
+
+		if (localStorageRef) {
+      user = JSON.parse(localStorageRef);
+		}
+
     return {
       user: user,
     }
   },
 
   handleAuthorization: function(user) {
+		localStorage.setItem('user', JSON.stringify(user));
     return this.setState({user: user});
   },
 
   handleDeauthorization: function() {
     var user = {key: 0};
+		localStorage.setItem('user', JSON.stringify(user));
     return this.setState({user: user});
   },
 
