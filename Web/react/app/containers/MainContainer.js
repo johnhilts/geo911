@@ -39,6 +39,10 @@ var MainContainer = React.createClass({
     return this.setState({user: user});
   },
 
+  handleHelperClick: function(event) {
+    alert(event.target.attributes["data-helper-key"].value);
+  },
+
   render: function() {
     return (
       <div>
@@ -53,7 +57,8 @@ var MainContainer = React.createClass({
           </div>
         </div>
         <div style={styles.container}>
-          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user })}
+          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
+            onHelperClick: this.handleHelperClick, })}
         </div>
         <div>
           <p>Footer</p>

@@ -21,7 +21,7 @@ var Help = function(props) {
       </div>
       <div className="col-sm-12">&nbsp;</div>
       <div>
-        <ListHelpers helpers={props.helpers} />
+        <ListHelpers helpers={props.helpers} onHelperClick={props.onHelperClick} />
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ function Home (props) {
     ?
       <div style={styles.container}>
         <p>Home area</p>
-        <HelpContainer user={props.user} />
+        <HelpContainer user={props.user} onHelperClick={props.onHelperClick} />
       </div>
     :
       <div><LoginContainer user={props.user} onAuthorize={props.onAuthorize} /></div>

@@ -7,8 +7,27 @@ function ItemHelper(props) {
   }
   return (
     <li className="list-group-item">
-      {helperInfo.substring(0, 20)}
+      <a href="#" onClick={props.onHelperClick} data-helper-key={props.helper.key}>
+        {helperInfo.substring(0, 20)}
+      </a>
     </li>
+  )
+}
+
+function HelperPanel(props) {
+  var helpers = props.helpers;
+  return (
+    <div className="panel panel-default">
+      <div className="panel-heading">{props.heading}</div>
+      <div className="panel-body">
+        <p>{props.prompt}</p>
+      </div>
+      <ul className="list-group">
+        {Object.keys(helpers).map(function (key) {
+          return <ItemHelper key={key} helper={helpers[key]} onHelperClick={props.onHelperClick} />
+        })}
+      </ul>
+    </div>
   )
 }
 
@@ -17,28 +36,28 @@ function ListHelpers(props){
   if (helpers) {
     return (
       <div className="row">
-        <div className="panel panel-default col-sm-5">
-          <div className="panel-heading">Helpers you have previously added:</div>
-          <div className="panel-body">
-            <p>Please add up to 3 helpers here</p>
-          </div>
-          <ul className="list-group">
-            {Object.keys(helpers).map(function (key) {
-              return <ItemHelper key={key} helper={helpers[key]}  />
-            })}
-          </ul>
+        <div className="row col-sm-5">
+          <HelperPanel
+            heading="Helpers you have previously added:"
+            prompt="Please add up to 3 helpers here"
+            helpers={helpers}
+            onHelperClick={props.onHelperClick}
+          />
         </div>
         <div className="col-sm-1">&nbsp;</div>
-        <div className="panel panel-default col-sm-5">
-          <div className="panel-heading">Red Helper</div>
-          <div className="panel-body">
-            <p>Please pre-select a helper for red alerts by clicking on 1 of the numbers in the list on the left</p>
-          </div>
-          <ul className="list-group">
-            {Object.keys(helpers).map(function (key) {
-              return <ItemHelper key={key} helper={helpers[key]}  />
-            })}
-          </ul>
+        <div className="row col-sm-5">
+          <HelperPanel
+            heading="Red Helper"
+            prompt="Please pre-select a helper for red alerts by clicking on 1 of the numbers in the list on the left"
+            helpers={helpers}
+            onHelperClick={props.onHelperClick}
+          />
+          <HelperPanel
+            heading="Yellow Helper"
+            prompt="Please pre-select a helper for yellow alerts by clicking on 1 of the numbers in the list on the left"
+            helpers={helpers}
+            onHelperClick={props.onHelperClick}
+          />
         </div>
       </div>
     )
