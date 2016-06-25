@@ -29,14 +29,23 @@ var MainContainer = React.createClass({
   },
 
   handleAuthorization: function(user) {
-		localStorage.setItem('user', JSON.stringify(user));
-    return this.setState({user: user});
+    return this.handleSaveUser(user);
   },
 
   handleDeauthorization: function() {
     var user = {key: 0};
+    return this.handleSaveUser(user);
+  },
+
+  handleSaveUser: function(user) {
 		localStorage.setItem('user', JSON.stringify(user));
     return this.setState({user: user});
+  },
+
+  handleSaveHelpers: function(helpers) {
+    var user = this.state.user;
+    user.helpers = helpers;
+    return this.handleSaveUser(user);
   },
 
   handleHelperClick: function(event) {
@@ -58,7 +67,7 @@ var MainContainer = React.createClass({
         </div>
         <div style={styles.container}>
           {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
-            onHelperClick: this.handleHelperClick, })}
+            onHelperClick: this.handleHelperClick, onSaveHelpers: this.handleSaveHelpers, })}
         </div>
         <div>
           <p>Footer</p>

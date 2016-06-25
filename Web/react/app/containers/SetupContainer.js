@@ -42,8 +42,8 @@ var SetupContainer = React.createClass({
 
 		this.state.helpers[helper.key] = helper;
 
-		// set the state
 		this.setState({ helpers : this.state.helpers });
+		this.props.onSaveHelpers(this.state.helpers);
 
 		event.target.reset();
   },
@@ -60,17 +60,6 @@ var SetupContainer = React.createClass({
       })
 	},
 
-  handleHelpClick: function(event) {
-
-    this.context.router.push({
-      pathname: '/help',
-      state: {
-        helpers: this.state.helpers
-      }
-    })
-
-  },
-
   render: function() {
     return (
 			<div>
@@ -80,7 +69,6 @@ var SetupContainer = React.createClass({
 	        onSubmit={this.handleSubmit}
 	        onUpdateTheName={this.handleUpdateTheName}
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
-	        onHelpClick={this.handleHelpClick}
 	      />
 			</div>
     )

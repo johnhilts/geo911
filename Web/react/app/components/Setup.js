@@ -3,17 +3,16 @@ var ListHelpers = require('./ListHelpers');
 
 function SetupHelpers(props) {
   return (
-    <div>
-      <p>This is the setup screen</p>
-      <ListHelpers helpers={props.helpers} />
+    <div style={{marginLeft:20,marginTop:20,marginBottom:20,}}>
       <p>Add a number to text</p>
       <form onSubmit={props.onSubmit}>
         <input value={props.theName} onChange={props.onUpdateTheName} placeholder="enter a name" /><br />
         <br />
         <input value={props.callNumber} onChange={props.onUpdateCallNumber} placeholder="enter number" />
-        <input type="submit" value="Add" />
+        <input type="submit" value="Add" className="btn btn-info" style={{marginLeft:10,marginTop: 10,marginBottom: 10, marginRight: 10}} />
       </form>
-      <button onClick={props.onHelpClick}>Return</button>
+      <div>&nbsp;</div>
+      <ListHelpers helpers={props.helpers} />
     </div>
   )
 }
