@@ -24,6 +24,7 @@ var SetupContainer = React.createClass({
 		this.ref = base.syncState('users/' + this.props.user.key + '/helpers', {
 			context : this,
 			state : 'helpers',
+			asArray: true,
 			then(d) {
 				this.setState({isLoading: false,});
 			},
@@ -38,7 +39,8 @@ var SetupContainer = React.createClass({
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
-		var helper = {key: 'helper-' + timestamp, theName: event.target[0].value, callNumber: event.target[1].value};
+		var helper = {key: 'helper-' + timestamp, theName: event.target[0].value, callNumber: event.target[1].value,
+			isRed: event.target[2].checked, isYellow: event.target[3].checked, };
 
 		this.state.helpers[helper.key] = helper;
 

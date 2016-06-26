@@ -9,6 +9,12 @@ function SetupHelpers(props) {
         <input value={props.theName} onChange={props.onUpdateTheName} placeholder="enter a name" /><br />
         <br />
         <input value={props.callNumber} onChange={props.onUpdateCallNumber} placeholder="enter number" />
+        <br />
+        <label htmlFor="isRed">Send Red Alert</label>&nbsp;
+        <input id="isRed" type="checkbox" checked={props.isRed} />
+        &nbsp;&nbsp;
+        <label htmlFor="isYellow">Send Yellow Alert</label>&nbsp;
+        <input id="isYellow" type="checkbox" checked={props.isYellow} />
         <input type="submit" value="Add" className="btn btn-info" style={{marginLeft:10,marginTop: 10,marginBottom: 10, marginRight: 10}} />
       </form>
       <div>&nbsp;</div>
