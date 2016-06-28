@@ -21,9 +21,10 @@ var SetupContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount : function() {
-		this.ref = base.syncState('users/users-' + this.props.uid + '/helpers', {
+		this.ref = base.syncState('users/' + this.props.user.key + '/helpers', {
 			context : this,
 			state : 'helpers',
+			asArray: true,
 			then(d) {
 				this.setState({isLoading: false,});
 			},
@@ -38,12 +39,13 @@ var SetupContainer = React.createClass({
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
-		var helper = {key: 'helper-' + timestamp, theName: event.target[0].value, callNumber: event.target[1].value};
+		var helper = {key: 'helper-' + timestamp, theName: event.target[0].value, callNumber: event.target[1].value,
+			isRed: event.target[2].checked, isYellow: event.target[3].checked, };
 
 		this.state.helpers[helper.key] = helper;
 
-		// set the state
 		this.setState({ helpers : this.state.helpers });
+		this.props.onSaveHelpers(this.state.helpers);
 
 		event.target.reset();
   },
@@ -60,17 +62,6 @@ var SetupContainer = React.createClass({
       })
 	},
 
-  handleHelpClick: function(event) {
-
-    this.context.router.push({
-      pathname: '/help',
-      state: {
-        helpers: this.state.helpers
-      }
-    })
-
-  },
-
   render: function() {
     return (
 			<div>
@@ -80,7 +71,6 @@ var SetupContainer = React.createClass({
 	        onSubmit={this.handleSubmit}
 	        onUpdateTheName={this.handleUpdateTheName}
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
-	        onHelpClick={this.handleHelpClick}
 	      />
 			</div>
     )

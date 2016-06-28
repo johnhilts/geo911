@@ -1,14 +1,27 @@
 var React = require('react');
+var ListHelpers = require('./ListHelpers');
 
 var Help = function(props) {
   return (
     <div>
-      <div>
-        <button className="btn btn-error" onClick={props.onRedClick}>Red Alert!</button>
+      <div className="col-sm-12 row">
+        <div className="col-sm-4">&nbsp;</div>
+        <div className="col-sm-4">
+          <button className="btn btn-danger" onClick={props.onRedClick}>Red Alert!</button>
+        </div>
+        <div className="col-sm-4">&nbsp;</div>
       </div>
-      <div>&nbsp;</div>
+      <div className="col-sm-12">&nbsp;</div>
+      <div className="col-sm-12 row">
+        <div className="col-sm-4">&nbsp;</div>
+        <div className="col-sm-4">
+          <button className="btn btn-warning" onClick={props.onYellowClick}>Yellow Alert!</button>
+        </div>
+        <div className="col-sm-4">&nbsp;</div>
+      </div>
+      <div className="col-sm-12">&nbsp;</div>
       <div>
-        <button className="btn btn-warning" onClick={props.onYellowClick}>Yellow Alert!</button>
+        <ListHelpers helpers={props.helpers} onHelperClick={props.onHelperClick} />
       </div>
     </div>
   );

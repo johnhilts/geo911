@@ -1,48 +1,24 @@
 var React = require('react');
-
-function ItemHelper(props) {
-  var helperInfo = props.helper.theName + ' (' + props.helper.callNumber + ')';
-  if (helperInfo.length > 17) {
-    helperInfo = helperInfo.substring(0, 17) + '...';
-  }
-  return (
-    <li>
-      {helperInfo.substring(0, 20)}
-    </li>
-  )
-}
-
-function ListHelpers(props){
-  var helpers = props.helpers;
-  if (helpers) {
-    return (
-      <div>
-        Helpers you have previously added:<br />
-        <ul>
-          {Object.keys(helpers).map(function (key) {
-            return <ItemHelper key={key} helper={helpers[key]}  />
-          })}
-        </ul>
-    </div>
-  )
-  } else {
-    return <div>Please add up to 3 helpers here</div>
-  }
-}
+var ListHelpers = require('./ListHelpers');
 
 function SetupHelpers(props) {
   return (
-    <div>
-      <p>This is the setup screen</p>
-      <ListHelpers helpers={props.helpers} />
+    <div style={{marginLeft:20,marginTop:20,marginBottom:20,}}>
       <p>Add a number to text</p>
       <form onSubmit={props.onSubmit}>
         <input value={props.theName} onChange={props.onUpdateTheName} placeholder="enter a name" /><br />
         <br />
         <input value={props.callNumber} onChange={props.onUpdateCallNumber} placeholder="enter number" />
-        <input type="submit" value="Add" />
+        <br />
+        <label htmlFor="isRed">Send Red Alert</label>&nbsp;
+        <input id="isRed" type="checkbox" checked={props.isRed} />
+        &nbsp;&nbsp;
+        <label htmlFor="isYellow">Send Yellow Alert</label>&nbsp;
+        <input id="isYellow" type="checkbox" checked={props.isYellow} />
+        <input type="submit" value="Add" className="btn btn-info" style={{marginLeft:10,marginTop: 10,marginBottom: 10, marginRight: 10}} />
       </form>
-      <button onClick={props.onHelpClick}>Return</button>
+      <div>&nbsp;</div>
+      <ListHelpers helpers={props.helpers} />
     </div>
   )
 }

@@ -38,11 +38,21 @@ var LoginContainer = React.createClass({
         var user = users[0];
         if (user.password !== this.state.password) {
           alert('invalid email or password');
+          return;
         }
 
-        this.props.onAuthorize(user.key);
+        // re-read helpers asArray since above asArray doesn't seem to extend to nested objects
+        this.ref = base.fetch('users/' + user.key + '/helpers', {
+          context : this,
+          asArray : true,
+          then(helpers) {
+            user.helpers = helpers;
 
-        this.context.router.push('/');
+            this.props.onAuthorize(user);
+
+            this.context.router.push('/');
+          },
+        });
       },
 		});
   },

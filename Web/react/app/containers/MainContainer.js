@@ -15,14 +15,41 @@ var styles = {
 
 var MainContainer = React.createClass({
   getInitialState: function() {
+    var user = {key: 0};
+
+		var localStorageRef = localStorage.getItem('user');
+
+		if (localStorageRef) {
+      user = JSON.parse(localStorageRef);
+		}
+
     return {
-      uid: 0,
+      user: user,
     }
   },
 
-  handleAuthorization: function(uid) {
-    console.log('auth-ing user: ' + uid);
-    return this.setState({uid: uid});
+  handleAuthorization: function(user) {
+    return this.handleSaveUser(user);
+  },
+
+  handleDeauthorization: function() {
+    var user = {key: 0};
+    return this.handleSaveUser(user);
+  },
+
+  handleSaveUser: function(user) {
+		localStorage.setItem('user', JSON.stringify(user));
+    return this.setState({user: user});
+  },
+
+  handleSaveHelpers: function(helpers) {
+    var user = this.state.user;
+    user.helpers = helpers;
+    return this.handleSaveUser(user);
+  },
+
+  handleHelperClick: function(event) {
+    alert(event.target.attributes["data-helper-key"].value);
   },
 
   render: function() {
@@ -35,11 +62,12 @@ var MainContainer = React.createClass({
             </h1>
           </div>
           <div>
-            <UserPrompt />
+            <UserPrompt user={this.state.user} onDeauthorize={this.handleDeauthorization} />
           </div>
         </div>
         <div style={styles.container}>
-          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, uid: this.state.uid })}
+          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
+            onHelperClick: this.handleHelperClick, onSaveHelpers: this.handleSaveHelpers, })}
         </div>
         <div>
           <p>Footer</p>
