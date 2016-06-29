@@ -71,13 +71,13 @@ function ListHelpers(props){
         <div className="row col-sm-5">
           <HelperPanel
             heading="Red Alert Helper"
-            prompt="Please pre-select a helper for red alerts by clicking on 1 of the numbers in the list on the left"
+            prompt="To select a helper for red alerts, first click here, then click any 1 of the numbers in the list on the left"
             helpers={helpers.filter(function(helper) {return helper.isRed;})}
             onHelperClick={props.onHelperClick}
           />
           <HelperPanel
             heading="Yellow Alert Helper"
-            prompt="Please pre-select a helper for yellow alerts by clicking on 1 of the numbers in the list on the left"
+            prompt="To select a helper for yellow alerts, first click here, then click any 1 of the numbers in the list on the left"
             helpers={helpers.filter(function(helper) {return helper.isYellow;})}
             onHelperClick={props.onHelperClick}
           />
