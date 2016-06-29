@@ -63,6 +63,7 @@ var HelpContainer = React.createClass({
         onRedClick={this.handleRedClick}
         onYellowClick={this.handleYellowClick}
         onHelperClick={this.props.onHelperClick}
+        onHelperShowOnly={this.props.onHelperShowOnly}
       />
     )
   }
