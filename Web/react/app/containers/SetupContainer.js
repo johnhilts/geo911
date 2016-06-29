@@ -35,7 +35,7 @@ var SetupContainer = React.createClass({
 		base.removeBinding(this.ref);
 	},
 
-  handleSubmit: function(event) {
+  handleAddHelper: function(event) {
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
@@ -50,10 +50,26 @@ var SetupContainer = React.createClass({
 		event.target.reset();
   },
 
+  handleUpdateHelper: function(event) {
+		event.preventDefault();
+
+		var helper = {key: event.target[4].value, theName: event.target[0].value, callNumber: event.target[1].value,
+			isRed: event.target[2].checked, isYellow: event.target[3].checked, };
+
+		// NOTE: helpers is read back as an array from firebase, so can't access it the same way as when adding
+		var helperIndex = this.state.helpers.findIndex(function(h) { return h.key == helper.key;} );
+		this.state.helpers[helperIndex] = helper;
+
+		this.setState({ helpers : this.state.helpers });
+		this.props.onSaveHelpers(this.state.helpers);
+
+		this.props.onHelperShowOnly(helperIndex);
+  },
+
 	handleUpdateTheName: function(event) {
-    this.setState({
-        inputHelperName: [event.target.value]
-      })
+		this.setState({
+			inputHelperName: [event.target.value]
+		})
 	},
 
 	handleUpdateCallNumber: function(event) {
@@ -68,9 +84,11 @@ var SetupContainer = React.createClass({
 	      <Setup
 					helpers={this.state.helpers}
 					isLoading={this.state.isLoading}
-	        onSubmit={this.handleSubmit}
+	        onAddHelper={this.handleAddHelper}
+	        onUpdateHelper={this.handleUpdateHelper}
 	        onUpdateTheName={this.handleUpdateTheName}
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
+					onHelperClick={this.props.onHelperClick}
 	      />
 			</div>
     )

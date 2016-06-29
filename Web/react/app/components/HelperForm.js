@@ -5,7 +5,7 @@ var HelperForm = function(props) {
   var helper = (props.helper ? Object.assign({}, props.helper) : ({'theName': props.theName, 'callNumber': props.callNumber, 'isRed': props.isRed,
     'isYellow': props.isYellow, }));
   var removeButton = !props.isAdd
-    ? <input type="submit" value="Delete" className="btn btn-danger" style={{marginLeft:10,marginTop: 10,marginBottom: 10, marginRight: 10}} />
+    ? <input type="submit" value="Delete" className="btn btn-danger" style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
     : <span />;
   var hiddenHelperKey = <input type="hidden" value={helper.key} />
   return (
@@ -20,7 +20,7 @@ var HelperForm = function(props) {
         <label htmlFor="isYellow">Send Yellow Alert</label>&nbsp;
         <input id="isYellow" type="checkbox" defaultChecked={helper.isYellow} />
         {hiddenHelperKey}
-        <input type="submit" value={buttonText} className="btn btn-info" style={{marginLeft:10,marginTop: 10,marginBottom: 10, marginRight: 10}} />
+        <input type="submit" value={buttonText} className="btn btn-info" style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
         {removeButton}
       </form>
   )

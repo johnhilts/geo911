@@ -1,24 +1,20 @@
 var React = require('react');
+var HelperForm = require('./HelperForm');
 var ListHelpers = require('./ListHelpers');
 
 function SetupHelpers(props) {
   return (
     <div style={{marginLeft:20,marginTop:20,marginBottom:20,}}>
       <p>Add a number to text</p>
-      <form onSubmit={props.onSubmit}>
-        <input value={props.theName} onChange={props.onUpdateTheName} placeholder="enter a name" /><br />
-        <br />
-        <input value={props.callNumber} onChange={props.onUpdateCallNumber} placeholder="enter number" />
-        <br />
-        <label htmlFor="isRed">Send Red Alert</label>&nbsp;
-        <input id="isRed" type="checkbox" checked={props.isRed} />
-        &nbsp;&nbsp;
-        <label htmlFor="isYellow">Send Yellow Alert</label>&nbsp;
-        <input id="isYellow" type="checkbox" checked={props.isYellow} />
-        <input type="submit" value="Add" className="btn btn-info" style={{marginLeft:10,marginTop: 10,marginBottom: 10, marginRight: 10}} />
-      </form>
+      <HelperForm {...props} isAdd={true} onSubmit={props.onAddHelper} />
       <div>&nbsp;</div>
-      <ListHelpers helpers={props.helpers} />
+      <ListHelpers
+        helpers={props.helpers}
+        onHelperClick={props.onHelperClick}
+        onUpdateHelper={props.onUpdateHelper}
+        onUpdateTheName={props.onUpdateTheName}
+        onUpdateCallNumber={props.onUpdateCallNumber}
+        />
     </div>
   )
 }

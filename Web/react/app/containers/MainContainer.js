@@ -49,7 +49,18 @@ var MainContainer = React.createClass({
   },
 
   handleHelperClick: function(event) {
-    alert(event.target.attributes["data-helper-key"].value);
+    event.preventDefault();
+    var linkElement = event.target.attributes["data-helper-key"].value;
+    document.querySelector('[data-helper-key="' + linkElement + '"]').style.display = "none";
+    var divElement = 'div' + linkElement.substring(1);
+    document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "block";
+  },
+
+  handleHelperShowOnly: function(helperIndex) {
+    var linkElement = 'a' + helperIndex;
+    document.querySelector('[data-helper-key="' + linkElement + '"]').style.display = "block";
+    var divElement = 'div' + linkElement.substring(1);
+    document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "none";
   },
 
   render: function() {
@@ -67,7 +78,7 @@ var MainContainer = React.createClass({
         </div>
         <div style={styles.container}>
           {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
-            onHelperClick: this.handleHelperClick, onSaveHelpers: this.handleSaveHelpers, })}
+            onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveHelpers: this.handleSaveHelpers, })}
         </div>
         <div>
           <p>Footer</p>
