@@ -10,7 +10,7 @@ function ItemHelper(props) {
   var updateForm = props.canUpdate
   ?
       <div data-helper-key={'div' + helper.key} style={{display: 'none',}}>
-        <HelperForm {...props} isAdd={false} helper={helper} onSubmit={props.onUpdateHelper} />
+        <HelperForm {...props} isAdd={false} helper={helper} onSubmit={props.onUpdateHelper} onHelperShowOnly={props.onHelperShowOnly} />
       </div>
   : <span />
   return (
@@ -37,6 +37,7 @@ function HelperPanel(props) {
                     key={key}
                     helper={helpers[key]}
                     onHelperClick={props.onHelperClick}
+                    onHelperShowOnly={props.onHelperShowOnly}
                     onUpdateHelper={props.onUpdateHelper}
                     onUpdateTheName={props.onUpdateTheName}
                     onUpdateCallNumber={props.onUpdateCallNumber}
@@ -59,6 +60,7 @@ function ListHelpers(props){
             prompt="Please add up to 3 helpers here"
             helpers={helpers}
             onHelperClick={props.onHelperClick}
+            onHelperShowOnly={props.onHelperShowOnly}
             onUpdateHelper={props.onUpdateHelper}
             onUpdateTheName={props.onUpdateTheName}
             onUpdateCallNumber={props.onUpdateCallNumber}

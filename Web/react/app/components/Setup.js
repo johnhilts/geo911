@@ -11,6 +11,7 @@ function SetupHelpers(props) {
       <ListHelpers
         helpers={props.helpers}
         onHelperClick={props.onHelperClick}
+        onHelperShowOnly={props.onHelperShowOnly}
         onUpdateHelper={props.onUpdateHelper}
         onUpdateTheName={props.onUpdateTheName}
         onUpdateCallNumber={props.onUpdateCallNumber}

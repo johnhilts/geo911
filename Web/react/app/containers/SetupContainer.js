@@ -89,6 +89,7 @@ var SetupContainer = React.createClass({
 	        onUpdateTheName={this.handleUpdateTheName}
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
 					onHelperClick={this.props.onHelperClick}
+					onHelperShowOnly={this.props.onHelperShowOnly}
 	      />
 			</div>
     )
