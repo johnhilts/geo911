@@ -9,9 +9,12 @@ var HelperForm = function(props) {
     : <span />;
   var hiddenHelperKey = <input type="hidden" value={helper.key} />
   var helperIndex = props.helper ? props.helper.key : -1;
+  var cancelLink = !props.isAdd
+    ? <a onClick={props.onHelperShowOnly.bind(null, helperIndex)} style={{float: 'right',}}>cancel</a>
+    : <span />
   return (
       <div>
-        <a onClick={props.onHelperShowOnly.bind(null, helperIndex)} style={{float: 'right',}}>cancel</a>
+        {cancelLink}
         <form onSubmit={props.onSubmit}>
           <input defaultValue={helper.theName} onChange={props.onUpdateTheName} data-helper-key={helper.key} placeholder="enter a name" /><br />
           <br />
