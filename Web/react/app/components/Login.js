@@ -8,7 +8,7 @@ var Login = function(props) {
         <input type="password" value={props.password} onChange={props.onUpdatePassword} placeholder="password" />
         <br />
         <br />
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" className="btn btn-info" />
     </form>
   )
 }

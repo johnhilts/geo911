@@ -7,10 +7,17 @@ var styles = {
   header: {
     background: 'orange',
   },
+  innerHeader: {
+    marginLeft:20,marginTop:20,marginBottom:20,
+  },
   container: {
-    width: '100%',
-    height: '92%'
-  }
+    width: '90%',
+    height: '80%',
+    marginLeft:20,marginTop:20,marginBottom:20,
+  },
+  footer: {
+    marginLeft:20,marginTop:20,marginBottom:20,
+  },
 }
 
 var MainContainer = React.createClass({
@@ -68,12 +75,12 @@ var MainContainer = React.createClass({
     return (
       <div>
         <div style={styles.header}>
-          <div>
+          <div style={styles.innerHeader}>
             <h1>
               <Link to="/">geo911</Link>
             </h1>
           </div>
-          <div>
+          <div style={styles.innerHeader}>
             <UserPrompt user={this.state.user} onDeauthorize={this.handleDeauthorization} />
           </div>
         </div>
@@ -81,7 +88,7 @@ var MainContainer = React.createClass({
           {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
             onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveHelpers: this.handleSaveHelpers, })}
         </div>
-        <div>
+        <div style={styles.footer}>
           <p>geo911 &copy; {year}</p>
         </div>
       </div>

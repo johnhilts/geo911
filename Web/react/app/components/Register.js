@@ -10,7 +10,7 @@ var Register = function(props) {
         <input type="password" value={props.password} onChange={props.onUpdatePassword} placeholder="password" />
         <br />
         <br />
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className="btn btn-info" />
     </form>
   )
 }
