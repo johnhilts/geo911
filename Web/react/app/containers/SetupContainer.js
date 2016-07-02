@@ -35,12 +35,14 @@ var SetupContainer = React.createClass({
 		base.removeBinding(this.ref);
 	},
 
+	setupFields : {theName: 0, callNumber: 1, isRed: 2, isYellow: 3, key: 4, },
+
   handleAddHelper: function(event) {
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
-		var helper = {key: 'helper-' + timestamp, theName: event.target[0].value, callNumber: event.target[1].value,
-			isRed: event.target[2].checked, isYellow: event.target[3].checked, };
+		var helper = {key: 'helper-' + timestamp, theName: event.target[this.setupFields.theName].value, callNumber: event.target[this.setupFields.callNumber].value,
+			isRed: event.target[this.setupFields.isRed].checked, isYellow: event.target[this.setupFields.isYellow].checked, };
 
 		this.state.helpers[helper.key] = helper;
 
@@ -53,8 +55,9 @@ var SetupContainer = React.createClass({
   handleUpdateHelper: function(event) {
 		event.preventDefault();
 
-		var helper = {key: event.target[4].value, theName: event.target[0].value, callNumber: event.target[1].value,
-			isRed: event.target[2].checked, isYellow: event.target[3].checked, };
+		var helper = {key: event.target[this.setupFields.key].value,
+			theName: event.target[this.setupFields.theName].value, callNumber: event.target[this.setupFields.callNumber].value,
+			isRed: event.target[this.setupFields.isRed].checked, isYellow: event.target[this.setupFields.isYellow].checked, };
 
 		// NOTE: helpers is read back as an array from firebase, so can't access it the same way as when adding
 		var helperIndex = this.state.helpers.findIndex(function(h) { return h.key == helper.key;} );
