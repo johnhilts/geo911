@@ -6,7 +6,7 @@ var HelperForm = function(props) {
     'isYellow': props.isYellow, }));
   var hiddenHelperKey = <input type="hidden" value={helper.key} />
   var helperIndex = props.helper ? props.helper.key : -1;
-  var removeButton = !props.isAdd
+  var removeButton = !props.isAdd && props.onDeleteHelper
     ? <input type="button" value="Delete" className="btn btn-danger" onClick={props.onDeleteHelper.bind(null, helperIndex)}
         style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
     : <span />;
