@@ -4,11 +4,12 @@ var HelperForm = function(props) {
   var buttonText = props.isAdd ? "Add" : "Update";
   var helper = (props.helper ? Object.assign({}, props.helper) : ({'theName': props.theName, 'callNumber': props.callNumber, 'isRed': props.isRed,
     'isYellow': props.isYellow, }));
-  var removeButton = !props.isAdd
-    ? <input type="submit" value="Delete" className="btn btn-danger" style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
-    : <span />;
   var hiddenHelperKey = <input type="hidden" value={helper.key} />
   var helperIndex = props.helper ? props.helper.key : -1;
+  var removeButton = !props.isAdd
+    ? <input type="button" value="Delete" className="btn btn-danger" onClick={props.onDeleteHelper.bind(null, helperIndex)}
+        style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
+    : <span />;
   var cancelLink = !props.isAdd
     ? <a onClick={props.onHelperShowOnly.bind(null, helperIndex)} style={{float: 'right',}}>cancel</a>
     : <span />

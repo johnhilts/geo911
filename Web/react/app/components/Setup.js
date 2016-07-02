@@ -15,6 +15,7 @@ function SetupHelpers(props) {
         onUpdateHelper={props.onUpdateHelper}
         onUpdateTheName={props.onUpdateTheName}
         onUpdateCallNumber={props.onUpdateCallNumber}
+        onDeleteHelper={props.onDeleteHelper}
         />
     </div>
   )

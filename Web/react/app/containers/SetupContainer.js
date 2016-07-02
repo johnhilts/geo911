@@ -66,6 +66,19 @@ var SetupContainer = React.createClass({
 		this.props.onHelperShowOnly(helperIndex);
   },
 
+  handleDeleteHelper: function(helperKey, event) {
+		event.preventDefault();
+
+		// NOTE: helpers is read back as an array from firebase, so can't access it the same way as when adding
+		var helperIndex = this.state.helpers.findIndex(function(h) { return h.key == helperKey;} );
+		this.state.helpers.splice(helperIndex, 1);
+
+		this.setState({ helpers : this.state.helpers });
+		this.props.onSaveHelpers(this.state.helpers);
+
+		this.props.onHelperShowOnly(helperIndex);
+  },
+
 	handleUpdateTheName: function(event) {
 		this.setState({
 			inputHelperName: [event.target.value]
@@ -90,6 +103,7 @@ var SetupContainer = React.createClass({
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
 					onHelperClick={this.props.onHelperClick}
 					onHelperShowOnly={this.props.onHelperShowOnly}
+					onDeleteHelper={this.handleDeleteHelper}
 	      />
 			</div>
     )

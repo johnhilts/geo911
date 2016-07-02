@@ -10,7 +10,13 @@ function ItemHelper(props) {
   var updateForm = props.canUpdate
   ?
       <div data-helper-key={'div' + helper.key} style={{display: 'none',}}>
-        <HelperForm {...props} isAdd={false} helper={helper} onSubmit={props.onUpdateHelper} onHelperShowOnly={props.onHelperShowOnly} />
+        <HelperForm {...props}
+          isAdd={false}
+          helper={helper}
+          onSubmit={props.onUpdateHelper}
+          onHelperShowOnly={props.onHelperShowOnly}
+          onDeleteHelper={props.onDeleteHelper}
+         />
       </div>
   : <span />
   return (
@@ -42,6 +48,7 @@ function HelperPanel(props) {
                     onUpdateTheName={props.onUpdateTheName}
                     onUpdateCallNumber={props.onUpdateCallNumber}
                     canUpdate={props.canUpdate}
+                    onDeleteHelper={props.onDeleteHelper}
                   />
         })}
       </ul>
@@ -65,6 +72,7 @@ function ListHelpers(props){
             onUpdateTheName={props.onUpdateTheName}
             onUpdateCallNumber={props.onUpdateCallNumber}
             canUpdate={true}
+            onDeleteHelper={props.onDeleteHelper}
             />
         </div>
         <div className="col-sm-1">&nbsp;</div>
