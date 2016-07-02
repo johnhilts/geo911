@@ -64,6 +64,7 @@ var MainContainer = React.createClass({
   },
 
   render: function() {
+    var year = (new Date()).getFullYear();
     return (
       <div>
         <div style={styles.header}>
@@ -81,7 +82,7 @@ var MainContainer = React.createClass({
             onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveHelpers: this.handleSaveHelpers, })}
         </div>
         <div>
-          <p>Footer</p>
+          <p>geo911 &copy; {year}</p>
         </div>
       </div>
     )
