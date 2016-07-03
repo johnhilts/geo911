@@ -46,6 +46,10 @@ var SetupContainer = React.createClass({
 
 		this.state.helpers[helper.key] = helper;
 
+		if (helper.isRed || helper.isYellow) {
+			this.unsetOtherFlags(this.state.helpers, helper.key, helper.isRed, helper.isYellow);
+		}
+
 		this.setState({ helpers : this.state.helpers });
 		this.props.onSaveHelpers(this.state.helpers);
 
@@ -62,6 +66,10 @@ var SetupContainer = React.createClass({
 		// NOTE: helpers is read back as an array from firebase, so can't access it the same way as when adding
 		var helperIndex = this.state.helpers.findIndex(function(h) { return h.key == helper.key;} );
 		this.state.helpers[helperIndex] = helper;
+
+		if (helper.isRed || helper.isYellow) {
+			this.unsetOtherFlags(this.state.helpers, helper.key, helper.isRed, helper.isYellow);
+		}
 
 		this.setState({ helpers : this.state.helpers });
 		this.props.onSaveHelpers(this.state.helpers);
@@ -81,6 +89,22 @@ var SetupContainer = React.createClass({
 
 		this.props.onHelperShowOnly(helperIndex);
   },
+
+	unsetOtherFlags: function (helpers, helperIndex, isRed, isYellow) {
+		var unsetOtherFlag = function(helperIndex, flagName) {
+			helpers.forEach(function(h) {
+				if (h.key !== helperIndex) {
+					h[flagName] = false;
+				}
+			});
+		};
+		if (isRed) {
+			unsetOtherFlag(helperIndex, 'isRed');
+		}
+		if (isYellow) {
+			unsetOtherFlag(helperIndex, 'isYellow');
+		}
+	},
 
 	handleUpdateTheName: function(event) {
 		this.setState({
