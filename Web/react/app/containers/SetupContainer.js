@@ -118,6 +118,20 @@ var SetupContainer = React.createClass({
       })
 	},
 
+	handleUpdateIsRed: function(helperIndex, event) {
+		this.state.helpers[helperIndex].isRed = event.target.checked;
+    this.setState({
+        helpers: this.state.helpers,
+      })
+	},
+
+	handleUpdateIsYellow: function(helperIndex, event) {
+		this.state.helpers[helperIndex].isYellow = event.target.checked;
+    this.setState({
+        helpers: this.state.helpers,
+      })
+	},
+
   render: function() {
     return (
 			<div>
@@ -128,6 +142,8 @@ var SetupContainer = React.createClass({
 	        onUpdateHelper={this.handleUpdateHelper}
 	        onUpdateTheName={this.handleUpdateTheName}
 	        onUpdateCallNumber={this.handleUpdateCallNumber}
+	        onUpdateIsRed={this.handleUpdateIsRed}
+	        onUpdateIsYellow={this.handleUpdateIsYellow}
 					onHelperClick={this.props.onHelperClick}
 					onHelperShowOnly={this.props.onHelperShowOnly}
 					onDeleteHelper={this.handleDeleteHelper}

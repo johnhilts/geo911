@@ -47,6 +47,8 @@ function HelperPanel(props) {
                     onUpdateHelper={props.onUpdateHelper}
                     onUpdateTheName={props.onUpdateTheName}
                     onUpdateCallNumber={props.onUpdateCallNumber}
+                    onUpdateIsRed={props.onUpdateIsRed}
+                    onUpdateIsYellow={props.onUpdateIsYellow}
                     canUpdate={props.canUpdate}
                     onDeleteHelper={props.onDeleteHelper}
                   />
@@ -71,6 +73,8 @@ function ListHelpers(props){
             onUpdateHelper={props.onUpdateHelper}
             onUpdateTheName={props.onUpdateTheName}
             onUpdateCallNumber={props.onUpdateCallNumber}
+            onUpdateIsRed={props.onUpdateIsRed}
+            onUpdateIsYellow={props.onUpdateIsYellow}
             canUpdate={true}
             onDeleteHelper={props.onDeleteHelper}
             />
