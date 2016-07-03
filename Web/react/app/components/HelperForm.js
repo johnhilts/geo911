@@ -10,12 +10,12 @@ var HelperForm = function(props) {
     ? <input type="button" value="Delete" className="btn btn-danger" onClick={props.onDeleteHelper.bind(null, helperIndex)}
         style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
     : <span />;
-  var cancelLink = !props.isAdd
-    ? <a onClick={props.onHelperShowOnly.bind(null, helperIndex)} style={{float: 'right',}}>cancel</a>
+  var closeLink = !props.isAdd
+    ? <a onClick={props.onHelperShowOnly.bind(null, helperIndex)} style={{float: 'right',}}>close</a>
     : <span />
   return (
       <div>
-        {cancelLink}
+        {closeLink}
         <form onSubmit={props.onSubmit}>
           <input defaultValue={helper.theName} onChange={props.onUpdateTheName} data-helper-key={helper.key} placeholder="enter a name" /><br />
           <br />
