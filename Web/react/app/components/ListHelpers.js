@@ -19,14 +19,19 @@ function ItemHelper(props) {
          />
       </div>
   : <span />
+
+  var displayHelperInfo = helperInfo.substring(0, 20);
+  var helperItem = props.isFiltered
+  ? <span>{displayHelperInfo}</span>
+  : <a href="#" onClick={props.onHelperClick} data-helper-key={'a' + helper.key}>
+      {displayHelperInfo}
+    </a>
+    {updateForm}
   return (
     <li className="list-group-item">
-      <a href="#" onClick={props.onHelperClick} data-helper-key={'a' + helper.key}>
-        {helperInfo.substring(0, 20)}
-      </a>
-      {updateForm}
+      {helperItem}
     </li>
-  )
+    );
 }
 
 function HelperPanel(props) {
@@ -34,9 +39,6 @@ function HelperPanel(props) {
   return (
     <div className="panel panel-default">
       <div className="panel-heading">{props.heading}</div>
-      <div className="panel-body">
-        <p>{props.prompt}</p>
-      </div>
       <ul className="list-group">
         {Object.keys(helpers).map(function (key) {
           return <ItemHelper
@@ -51,6 +53,7 @@ function HelperPanel(props) {
                     onUpdateIsYellow={props.onUpdateIsYellow}
                     canUpdate={props.canUpdate}
                     onDeleteHelper={props.onDeleteHelper}
+                    isFiltered={props.isFiltered}
                   />
         })}
       </ul>
@@ -63,7 +66,7 @@ function ListHelpers(props){
   if (helpers) {
     return (
       <div className="row">
-        <div className="row col-sm-5">
+        <div className="row col-sm-5" style={{'display': props.onlyShowFlaggedHelpers ? 'none' : 'block',}}>
           <HelperPanel
             heading="Helpers you have previously added:"
             prompt="Please add up to 3 helpers here"
@@ -83,15 +86,13 @@ function ListHelpers(props){
         <div className="row col-sm-5">
           <HelperPanel
             heading="Red Alert Helper"
-            prompt="To select a helper for red alerts, first click here, then click any 1 of the numbers in the list on the left"
             helpers={helpers.filter(function(helper) {return helper.isRed;})}
-            onHelperClick={props.onHelperClick}
+            isFiltered={true}
           />
           <HelperPanel
             heading="Yellow Alert Helper"
-            prompt="To select a helper for yellow alerts, first click here, then click any 1 of the numbers in the list on the left"
             helpers={helpers.filter(function(helper) {return helper.isYellow;})}
-            onHelperClick={props.onHelperClick}
+            isFiltered={true}
           />
         </div>
       </div>
