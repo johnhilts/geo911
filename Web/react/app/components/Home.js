@@ -25,7 +25,6 @@ function Home (props) {
     props.user && props.user.key !== 0
     ?
       <div style={styles.container}>
-        <p>Home area</p>
         <HelpContainer user={props.user} onHelperClick={props.onHelperClick} onHelperShowOnly={props.onHelperShowOnly} />
       </div>
     :
