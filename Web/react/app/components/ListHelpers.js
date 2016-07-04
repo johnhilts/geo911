@@ -23,10 +23,12 @@ function ItemHelper(props) {
   var displayHelperInfo = helperInfo.substring(0, 20);
   var helperItem = props.isFiltered
   ? <span>{displayHelperInfo}</span>
-  : <a href="#" onClick={props.onHelperClick} data-helper-key={'a' + helper.key}>
-      {displayHelperInfo}
-    </a>
-    {updateForm}
+  : <div>
+      <a href="#" onClick={props.onHelperClick} data-helper-key={'a' + helper.key}>
+        {displayHelperInfo}
+      </a>
+      {updateForm}
+    </div>
   return (
     <li className="list-group-item">
       {helperItem}
