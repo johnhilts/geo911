@@ -1,7 +1,6 @@
 var React = require('react');
 
 var HelperForm = function(props) {
-  var buttonText = props.isAdd ? "Add" : "Update";
   var helper = (props.helper ? Object.assign({}, props.helper) : ({'theName': props.theName, 'callNumber': props.callNumber, 'isRed': props.isRed,
     'isYellow': props.isYellow, }));
   var hiddenHelperKey = <input type="hidden" value={helper.key} />
@@ -10,6 +9,10 @@ var HelperForm = function(props) {
   var isRedId = "isRed" + (!props.isAdd ? helper.key : 0).toString();
   var isYellowOnChange = !props.isAdd && props.onUpdateIsYellow ? props.onUpdateIsYellow.bind(null, helperIndex) : null;
   var isYellowId = "isYellow" + (!props.isAdd ? helper.key : 0).toString();
+  var buttonText = props.isAdd ? "Add" : "Update";
+  var addUpdateButton = props.blockEdit
+    ? <span />
+    : <input type="submit" value={buttonText} className="btn btn-info" style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />;
   var removeButton = !props.isAdd && props.onDeleteHelper
     ? <input type="button" value="Delete" className="btn btn-danger" onClick={props.onDeleteHelper.bind(null, helperIndex)}
         style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
@@ -31,7 +34,7 @@ var HelperForm = function(props) {
           <label htmlFor={isYellowId}>Send Yellow Alert</label>&nbsp;
           <input id={isYellowId} type="checkbox" checked={helper.isYellow} onChange={isYellowOnChange} />
           {hiddenHelperKey}
-          <input type="submit" value={buttonText} className="btn btn-info" style={{marginLeft:10, marginTop: 10, marginBottom: 10, marginRight: 10, }} />
+          {addUpdateButton}
           {removeButton}
         </form>
       </div>

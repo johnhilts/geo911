@@ -16,6 +16,7 @@ function ItemHelper(props) {
           onSubmit={props.onUpdateHelper}
           onHelperShowOnly={props.onHelperShowOnly}
           onDeleteHelper={props.onDeleteHelper}
+          blockEdit={props.blockEdit}
          />
       </div>
   : <span />
@@ -56,6 +57,7 @@ function HelperPanel(props) {
                     canUpdate={props.canUpdate}
                     onDeleteHelper={props.onDeleteHelper}
                     isFiltered={props.isFiltered}
+                    blockEdit={props.blockEdit}
                   />
         })}
       </ul>
@@ -82,6 +84,7 @@ function ListHelpers(props){
             onUpdateIsYellow={props.onUpdateIsYellow}
             canUpdate={true}
             onDeleteHelper={props.onDeleteHelper}
+            blockEdit={props.blockEdit}
             />
         </div>
         <div className="col-sm-1">&nbsp;</div>
