@@ -1,5 +1,6 @@
 var React = require('react');
 var HelperForm = require('./HelperForm');
+var Constants = require('../core/constants');
 
 function ItemHelper(props) {
   var helper = props.helper;
@@ -72,8 +73,7 @@ function ListHelpers(props){
       <div className="row">
         <div className="row col-sm-5" style={{'display': props.onlyShowFlaggedHelpers ? 'none' : 'block',}}>
           <HelperPanel
-            heading="Helpers you have previously added:"
-            prompt="Please add up to 3 helpers here"
+            heading={"Helpers you have previously added - you can add up to " + Constants.MaxHelpers}
             helpers={helpers}
             onHelperClick={props.onHelperClick}
             onHelperShowOnly={props.onHelperShowOnly}
@@ -103,7 +103,7 @@ function ListHelpers(props){
       </div>
     )
   } else {
-    return <div>Please add up to 3 helpers here</div>
+    return <div>Please add up to {Constants.MaxHelpers} helpers here</div>
   }
 }
 

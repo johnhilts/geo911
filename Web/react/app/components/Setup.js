@@ -1,11 +1,12 @@
 var React = require('react');
 var HelperForm = require('./HelperForm');
 var ListHelpers = require('./ListHelpers');
+var Constants = require('../core/constants');
 
 function BlockEdit(props) {
   return (
     <div style={{marginLeft:20,marginTop:20,marginBottom:20,}}>
-      <p style={{background: 'red',}}>You have more than 3 helpers. Please delete excess helpers.</p>
+      <p style={{background: 'red',}}>You have more than {Constants.MaxHelpers} helpers. Please delete excess helpers.</p>
       <div>&nbsp;</div>
       <ListHelpers
         helpers={props.helpers}
@@ -19,7 +20,7 @@ function BlockEdit(props) {
 }
 
 function SetupHelpers(props) {
-  var blockEdit = props.helpers.length > 3;
+  var blockEdit = props.helpers.length > Constants.MaxHelpers;
   if (blockEdit) {
     return (
       <BlockEdit
@@ -30,7 +31,7 @@ function SetupHelpers(props) {
         />
     )
   } else {
-    var addForm = props.helpers.length < 3
+    var addForm = props.helpers.length < Constants.MaxHelpers
     ? <div>
         <p>Add a number to text</p>
         <HelperForm {...props} isAdd={true} onSubmit={props.onAddHelper} />
