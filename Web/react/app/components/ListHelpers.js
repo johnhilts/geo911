@@ -2,38 +2,48 @@ var React = require('react');
 var HelperForm = require('./HelperForm');
 var Constants = require('../core/constants');
 
-function ItemHelper(props) {
+function UpdateForm(props) {
+  return (
+    props.canUpdate
+    ?
+    <div data-helper-key={'div' + props.helper.key} style={{display: 'none',}}>
+      <HelperForm {...props}
+        isAdd={false}
+        helper={props.helper}
+        onSubmit={props.onUpdateHelper}
+        onHelperShowOnly={props.onHelperShowOnly}
+        onDeleteHelper={props.onDeleteHelper}
+        blockEdit={props.blockEdit}
+        />
+    </div>
+    : <span />
+  )
+}
+
+function HelperItem(props) {
   var helper = props.helper;
   var helperInfo = helper.theName + ' (' + helper.callNumber + ')';
   if (helperInfo.length > 17) {
     helperInfo = helperInfo.substring(0, 17) + '...';
   }
-  var updateForm = props.canUpdate
-  ?
-      <div data-helper-key={'div' + helper.key} style={{display: 'none',}}>
-        <HelperForm {...props}
-          isAdd={false}
-          helper={helper}
-          onSubmit={props.onUpdateHelper}
-          onHelperShowOnly={props.onHelperShowOnly}
-          onDeleteHelper={props.onDeleteHelper}
-          blockEdit={props.blockEdit}
-         />
-      </div>
-  : <span />
 
   var displayHelperInfo = helperInfo.substring(0, 20);
-  var helperItem = props.isFiltered
-  ? <span>{displayHelperInfo}</span>
-  : <div>
-      <a href="#" onClick={props.onHelperClick} data-helper-key={'a' + helper.key}>
-        {displayHelperInfo}
-      </a>
-      {updateForm}
-    </div>
+  return (
+    props.isFiltered
+    ? <span>{displayHelperInfo}</span>
+    : <div>
+        <a href="#" onClick={props.onHelperClick} data-helper-key={'a' + helper.key}>
+          {displayHelperInfo}
+        </a>
+        <UpdateForm {...props} />
+      </div>
+  )
+}
+
+function ItemHelper(props) {
   return (
     <li className="list-group-item">
-      {helperItem}
+      <HelperItem {...props} />
     </li>
     );
 }

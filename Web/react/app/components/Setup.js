@@ -19,6 +19,18 @@ function BlockEdit(props) {
   )
 }
 
+function AddForm(props) {
+    return (
+      props.helpers.length < Constants.MaxHelpers
+      ? <div>
+          <p>Add a number to text</p>
+          <HelperForm {...props} isAdd={true} onSubmit={props.onAddHelper} />
+          <div>&nbsp;</div>
+        </div>
+      : <span />
+    )
+}
+
 function SetupHelpers(props) {
   var blockEdit = props.helpers.length > Constants.MaxHelpers;
   if (blockEdit) {
@@ -31,16 +43,9 @@ function SetupHelpers(props) {
         />
     )
   } else {
-    var addForm = props.helpers.length < Constants.MaxHelpers
-    ? <div>
-        <p>Add a number to text</p>
-        <HelperForm {...props} isAdd={true} onSubmit={props.onAddHelper} />
-        <div>&nbsp;</div>
-      </div>
-    : <span />
     return (
       <div style={{marginLeft:20,marginTop:20,marginBottom:20,}}>
-        {addForm}
+        <AddForm {...props} />
         <ListHelpers
           helpers={props.helpers}
           onHelperClick={props.onHelperClick}

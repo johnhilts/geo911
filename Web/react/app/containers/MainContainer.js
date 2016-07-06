@@ -70,27 +70,39 @@ var MainContainer = React.createClass({
     document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "none";
   },
 
-  render: function() {
+  renderHeader: function() {
+    return (
+      <div style={styles.header}>
+        <div style={styles.innerHeader}>
+          <h1>
+            <Link to="/">geo911</Link>
+          </h1>
+        </div>
+        <div style={styles.innerHeader}>
+          <UserPrompt user={this.state.user} onDeauthorize={this.handleDeauthorization} />
+        </div>
+      </div>
+    )
+  },
+
+  renderFooter: function() {
     var year = (new Date()).getFullYear();
     return (
+      <div style={styles.footer}>
+        <p>geo911 &copy; {year}</p>
+      </div>
+    )
+  },
+
+  render: function() {
+    return (
       <div>
-        <div style={styles.header}>
-          <div style={styles.innerHeader}>
-            <h1>
-              <Link to="/">geo911</Link>
-            </h1>
-          </div>
-          <div style={styles.innerHeader}>
-            <UserPrompt user={this.state.user} onDeauthorize={this.handleDeauthorization} />
-          </div>
-        </div>
+        {this.renderHeader()}
         <div style={styles.container}>
           {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
             onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveHelpers: this.handleSaveHelpers, })}
         </div>
-        <div style={styles.footer}>
-          <p>geo911 &copy; {year}</p>
-        </div>
+        {this.renderFooter()}
       </div>
     )
   }

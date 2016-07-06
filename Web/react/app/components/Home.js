@@ -20,15 +20,19 @@ var styles = {
   },
 }
 
-function Home (props) {
-  return (
-    props.user && props.user.key !== 0
-    ?
+function Helper(props) {
+    return (
       <div style={styles.container}>
         <HelpContainer user={props.user} onHelperClick={props.onHelperClick} onHelperShowOnly={props.onHelperShowOnly} />
       </div>
-    :
-      <div><LoginContainer user={props.user} onAuthorize={props.onAuthorize} /></div>
+    )
+}
+
+function Home (props) {
+  return (
+    props.user && props.user.key !== 0
+    ? <Helper {...props} />
+    : <LoginContainer user={props.user} onAuthorize={props.onAuthorize} />
   )
 }
 
