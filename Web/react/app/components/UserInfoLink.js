@@ -1,7 +1,7 @@
-var React = require('react');
-var Link = require('react-router').Link;
+import React from 'react';
+import {Link} from 'react-router';
 
-function UserInfoLink(props) {
+export default function UserInfoLink(props) {
   return (
     <span>
       <Link to="/">Welcome, {props.user.userName}</Link>
@@ -10,5 +10,3 @@ function UserInfoLink(props) {
     </span>
   )
 }
-
-module.exports = UserInfoLink;

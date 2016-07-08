@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Login = function(props) {
+ export default function Login(props) {
   return (
     <form onSubmit={props.onSubmit}>
         <input value={props.email} onChange={props.onUpdateEmail} placeholder="email" /><br />
@@ -12,5 +12,3 @@ var Login = function(props) {
     </form>
   )
 }
-
-module.exports = Login;

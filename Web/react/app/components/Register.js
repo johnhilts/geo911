@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Register = function(props) {
+export default function Register(props) {
   return (
     <form onSubmit={props.onSubmit}>
         <input value={props.userName} onChange={props.onUpdateUserName} placeholder="your name" /><br />
@@ -14,5 +14,3 @@ var Register = function(props) {
     </form>
   )
 }
-
-module.exports = Register;

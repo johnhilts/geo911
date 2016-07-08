@@ -1,10 +1,10 @@
-var React = require('react');
-var LoginLink = require('./LoginLink');
-var SignupLink = require('./SignupLink');
-var UserInfoLink = require('./UserInfoLink');
-var LogoffLink = require('./LogoffLink');
+import React from 'react';
+import LoginLink from './LoginLink';
+import SignupLink from './SignupLink';
+import UserInfoLink from './UserInfoLink';
+import LogoffLink from './LogoffLink';
 
-function UserPrompt (props) {
+export default function UserPrompt (props) {
     return (
       props.user.key === 0
       ?
@@ -21,5 +21,3 @@ function UserPrompt (props) {
       </div>
     );
   }
-
-module.exports = UserPrompt;

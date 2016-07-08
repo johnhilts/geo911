@@ -1,24 +1,24 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Rebase = require('re-base');
+import React from 'react';
+import ReactRouter from 'react-router';
+import Rebase from 're-base';
 var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
-var Login = require('../components/Login');
+import Login from '../components/Login';
 
-var LoginContainer = React.createClass({
+const LoginContainer = React.createClass({
 
   // NOTE: contextTypes doesn't scale well, but ok for limited use such as with routers
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       'users': {},
       'password': '',
     }
   },
 
-  handleLoginSubmit: function(event) {
+  handleLoginSubmit(event) {
     event.preventDefault();
 
     this.setState({password: event.target[1].value});
@@ -57,15 +57,15 @@ var LoginContainer = React.createClass({
 		});
   },
 
-  handleUpdateEmail: function(event) {
+  handleUpdateEmail(event) {
     this.setState({ inputEmail: [event.target.value] })
   },
 
-  handleUpdatePassword: function(event) {
+  handleUpdatePassword(event) {
     this.setState({ inputPassword: [event.target.value] })
   },
 
-  render: function() {
+  render() {
     return (
       <Login
       onSubmit={this.handleLoginSubmit}
@@ -76,4 +76,4 @@ var LoginContainer = React.createClass({
   }
 });
 
-module.exports = LoginContainer;
+export default LoginContainer;

@@ -1,17 +1,17 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Rebase = require('re-base');
+import React from 'react';
+import ReactRouter from 'react-router';
+import Rebase from 're-base';
 var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
-var Register = require('../components/Register');
+import Register from '../components/Register';
 
-var RegisterContainer = React.createClass({
+const RegisterContainer = React.createClass({
 
 	// NOTE: contextTypes doesn't scale well, but ok for limited use such as with routers
 	contextTypes: {
 		router: React.PropTypes.object.isRequired
 	},
 
-	getInitialState: function() {
+	getInitialState() {
 		return {
 			'users': {},
 		}
@@ -19,22 +19,22 @@ var RegisterContainer = React.createClass({
 
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
-	componentDidMount : function() {
+	componentDidMount() {
 		this.ref = base.syncState('users', {
 			context : this,
 			state : 'users',
 		});
 	},
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		base.removeBinding(this.ref);
 	},
 
-  handleRegisterSubmit: function(event) {
+  handleRegisterSubmit(event) {
     event.preventDefault();
 
-		var timestamp = (new Date()).getTime();
-    var user = {
+		let timestamp = (new Date()).getTime();
+    let user = {
       key: 'user-' + timestamp,
       userName: event.target[0].value,
       email: event.target[1].value,
@@ -50,19 +50,19 @@ var RegisterContainer = React.createClass({
     this.context.router.push('/');
   },
 
-	handleUpdateUserName: function(event) {
+	handleUpdateUserName(event) {
     this.setState({ inputUserName: [event.target.value] })
 	},
 
-	handleUpdateEmail: function(event) {
+	handleUpdateEmail(event) {
     this.setState({ inputEmail: [event.target.value] })
 	},
 
-	handleUpdatePassword: function(event) {
+	handleUpdatePassword(event) {
     this.setState({ inputPassword: [event.target.value] })
 	},
 
-  render: function() {
+  render() {
     return (
       <Register
         onSubmit={this.handleRegisterSubmit}
@@ -74,4 +74,4 @@ var RegisterContainer = React.createClass({
   }
 });
 
-module.exports = RegisterContainer;
+export default RegisterContainer;

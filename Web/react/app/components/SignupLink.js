@@ -1,8 +1,6 @@
-var React = require('react');
-var Link = require('react-router').Link;
+import React from 'react';
+import {Link} from 'react-router';
 
-function SignupLink(props) {
+export default function SignupLink(props) {
   return (<Link to='/register'>Sign Up</Link>);
 }
-
-module.exports = SignupLink;
