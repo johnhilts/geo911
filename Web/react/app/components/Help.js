@@ -2,19 +2,19 @@ import React from 'react';
 import ListHelpers from './ListHelpers';
 
 const RenderAlert = (props) => {
-  var buttonClassName = '';
-  var buttonText = '';
-  var onClick = null;
+  let buttonClassName = '';
+  let buttonText = '';
+  let onClick = null;
   switch (props.buttonType) {
     case 'Red':
-    buttonClassName = 'btn btn-danger';
-    buttonText = "Red Alert!";
-    onClick = props.onRedClick;
+      buttonClassName = 'btn btn-danger';
+      buttonText = "Red Alert!";
+      onClick = props.onRedClick;
     break;
     case 'Yellow':
-    buttonClassName = 'btn btn-warning';
-    buttonText = "Yellow Alert!";
-    onClick = props.onYellowClick;
+      buttonClassName = 'btn btn-warning';
+      buttonText = "Yellow Alert!";
+      onClick = props.onYellowClick;
     break;
   }
   return (

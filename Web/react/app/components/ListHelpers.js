@@ -21,13 +21,13 @@ const UpdateForm = (props) => {
 }
 
 const HelperItem = (props) => {
-  var helper = props.helper;
-  var helperInfo = helper.theName + ' (' + helper.callNumber + ')';
+  let helper = props.helper;
+  let helperInfo = helper.theName + ' (' + helper.callNumber + ')';
   if (helperInfo.length > 17) {
     helperInfo = helperInfo.substring(0, 17) + '...';
   }
 
-  var displayHelperInfo = helperInfo.substring(0, 20);
+  let displayHelperInfo = helperInfo.substring(0, 20);
   return (
     props.isFiltered
     ? <span>{displayHelperInfo}</span>
@@ -49,7 +49,7 @@ const ItemHelper = (props) => {
 }
 
 const HelperPanel = (props) => {
-  var helpers = props.helpers;
+  let helpers = props.helpers;
   return (
     <div className="panel panel-default">
       <div className="panel-heading">{props.heading}</div>
@@ -77,7 +77,7 @@ const HelperPanel = (props) => {
 }
 
 export default function ListHelpers(props) {
-  var helpers = props.helpers;
+  let helpers = props.helpers;
   if (helpers) {
     return (
       <div className="row">

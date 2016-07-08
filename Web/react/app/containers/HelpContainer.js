@@ -25,8 +25,8 @@ const HelpContainer = React.createClass({
   },
 
   getInfo(props) {
-    var helpers = props.user.helpers;
-    var hasSetup = helpers;
+    let helpers = props.user.helpers;
+    let hasSetup = helpers;
     if (!hasSetup) {
       this.context.router.push({
         pathname: '/setup',
