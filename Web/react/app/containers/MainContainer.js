@@ -1,7 +1,6 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Link = require('react-router').Link;
-var UserPrompt = require('../components/UserPrompt');
+import React from 'react';
+import ReactRouter, {Link} from 'react-router';
+import UserPrompt from '../components/UserPrompt';
 
 var styles = {
   header: {
@@ -20,8 +19,8 @@ var styles = {
   },
 }
 
-var MainContainer = React.createClass({
-  getInitialState: function() {
+const MainContainer = React.createClass({
+  getInitialState() {
     var user = {key: 0};
 
 		var localStorageRef = localStorage.getItem('user');
@@ -35,27 +34,27 @@ var MainContainer = React.createClass({
     }
   },
 
-  handleAuthorization: function(user) {
+  handleAuthorization(user) {
     return this.handleSaveUser(user);
   },
 
-  handleDeauthorization: function() {
+  handleDeauthorization() {
     var user = {key: 0};
     return this.handleSaveUser(user);
   },
 
-  handleSaveUser: function(user) {
+  handleSaveUser(user) {
 		localStorage.setItem('user', JSON.stringify(user));
     return this.setState({user: user});
   },
 
-  handleSaveHelpers: function(helpers) {
+  handleSaveHelpers(helpers) {
     var user = this.state.user;
     user.helpers = helpers;
     return this.handleSaveUser(user);
   },
 
-  handleHelperClick: function(event) {
+  handleHelperClick(event) {
     event.preventDefault();
     var linkElement = event.target.attributes["data-helper-key"].value;
     document.querySelector('[data-helper-key="' + linkElement + '"]').style.display = "none";
@@ -63,14 +62,14 @@ var MainContainer = React.createClass({
     document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "block";
   },
 
-  handleHelperShowOnly: function(helperIndex) {
+  handleHelperShowOnly(helperIndex) {
     var linkElement = 'a' + helperIndex;
     document.querySelector('[data-helper-key="' + linkElement + '"]').style.display = "block";
     var divElement = 'div' + linkElement.substring(1);
     document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "none";
   },
 
-  renderHeader: function() {
+  renderHeader() {
     return (
       <div style={styles.header}>
         <div style={styles.innerHeader}>
@@ -85,7 +84,7 @@ var MainContainer = React.createClass({
     )
   },
 
-  renderFooter: function() {
+  renderFooter() {
     var year = (new Date()).getFullYear();
     return (
       <div style={styles.footer}>
@@ -94,7 +93,7 @@ var MainContainer = React.createClass({
     )
   },
 
-  render: function() {
+  render() {
     return (
       <div>
         {this.renderHeader()}
@@ -108,4 +107,4 @@ var MainContainer = React.createClass({
   }
 });
 
-module.exports = MainContainer;
+export default MainContainer;

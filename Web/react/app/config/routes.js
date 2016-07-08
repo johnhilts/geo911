@@ -1,15 +1,11 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
-var browserHistory = ReactRouter.browserHistory;
-var IndexRoute = ReactRouter.IndexRoute;
-var MainContainer = require("../containers/MainContainer");
-var Home = require("../components/Home");
-var HelpContainer = require("../containers/HelpContainer");
-var SetupContainer = require("../containers/SetupContainer");
-var RegisterContainer = require("../containers/RegisterContainer");
-var LoginContainer = require("../containers/LoginContainer");
+import React from 'react';
+import ReactRouter, {Router, Route, browserHistory, IndexRoute} from 'react-router';
+import MainContainer from '../containers/MainContainer';
+import Home from '../components/Home';
+import HelpContainer from '../containers/HelpContainer';
+import SetupContainer from '../containers/SetupContainer';
+import RegisterContainer from '../containers/RegisterContainer';
+import LoginContainer from '../containers/LoginContainer';
 
 var routes = (
   <Router history={browserHistory}>
@@ -23,4 +19,4 @@ var routes = (
   </Router>
 );
 
-module.exports = routes;
+export default routes;

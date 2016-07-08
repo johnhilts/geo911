@@ -1,3 +1,1 @@
-module.exports = {
-  MaxHelpers: 3,
-}
+export const MaxHelpers = 3;
