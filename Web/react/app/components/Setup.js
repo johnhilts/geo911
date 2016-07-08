@@ -1,9 +1,9 @@
-var React = require('react');
-var HelperForm = require('./HelperForm');
-var ListHelpers = require('./ListHelpers');
-var Constants = require('../core/constants');
+import React from 'react';
+import HelperForm from './HelperForm';
+import ListHelpers from './ListHelpers';
+import * as Constants from '../core/constants';
 
-function BlockEdit(props) {
+const BlockEdit = (props) => {
   return (
     <div style={{marginLeft:20,marginTop:20,marginBottom:20,}}>
       <p style={{background: 'red',}}>You have more than {Constants.MaxHelpers} helpers. Please delete excess helpers.</p>
@@ -19,7 +19,7 @@ function BlockEdit(props) {
   )
 }
 
-function AddForm(props) {
+const AddForm = (props) => {
     return (
       props.helpers.length < Constants.MaxHelpers
       ? <div>
@@ -31,7 +31,7 @@ function AddForm(props) {
     )
 }
 
-function SetupHelpers(props) {
+const SetupHelpers = (props) => {
   var blockEdit = props.helpers.length > Constants.MaxHelpers;
   if (blockEdit) {
     return (
@@ -62,7 +62,7 @@ function SetupHelpers(props) {
   }
 }
 
-var Setup = function(props) {
+export default function Setup (props) {
   return (
     props.isLoading
     ?
@@ -71,5 +71,3 @@ var Setup = function(props) {
     <SetupHelpers {...props} />
   )
 }
-
-module.exports = Setup;

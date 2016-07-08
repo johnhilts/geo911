@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var HelperForm = function(props) {
+export default function HelperForm(props) {
   var helper = (props.helper ? Object.assign({}, props.helper) : ({'theName': props.theName, 'callNumber': props.callNumber, 'isRed': props.isRed,
     'isYellow': props.isYellow, }));
   var hiddenHelperKey = <input type="hidden" value={helper.key} />
@@ -40,5 +40,3 @@ var HelperForm = function(props) {
       </div>
   )
 }
-
-module.exports = HelperForm;

@@ -1,7 +1,7 @@
-var React = require('react');
-var Main = require("../containers/MainContainer");
-var HelpContainer = require("../containers/HelpContainer")
-var LoginContainer = require("../containers/LoginContainer")
+import React from 'react';
+import Main from '../containers/MainContainer';
+import HelpContainer from '../containers/HelpContainer';
+import LoginContainer from '../containers/LoginContainer';
 
 var styles = {
   container: {
@@ -20,7 +20,7 @@ var styles = {
   },
 }
 
-function Helper(props) {
+const Helper = (props) => {
     return (
       <div style={styles.container}>
         <HelpContainer user={props.user} onHelperClick={props.onHelperClick} onHelperShowOnly={props.onHelperShowOnly} />
@@ -28,7 +28,7 @@ function Helper(props) {
     )
 }
 
-function Home (props) {
+const Home = (props) => {
   return (
     props.user && props.user.key !== 0
     ? <Helper {...props} />
@@ -36,4 +36,4 @@ function Home (props) {
   )
 }
 
-module.exports = Home;
+export default Home;

@@ -1,7 +1,7 @@
-var React = require('react');
-var ListHelpers = require('./ListHelpers');
+import React from 'react';
+import ListHelpers from './ListHelpers';
 
-function RenderAlert(props) {
+const RenderAlert = (props) => {
   var buttonClassName = '';
   var buttonText = '';
   var onClick = null;
@@ -28,7 +28,7 @@ function RenderAlert(props) {
   )
 }
 
-var Help = function(props) {
+export default function Help(props) {
   return (
     <div>
       <RenderAlert {...props} buttonType='Red' />
@@ -41,5 +41,3 @@ var Help = function(props) {
     </div>
   );
 }
-
-module.exports = Help;

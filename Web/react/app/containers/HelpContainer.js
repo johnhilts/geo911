@@ -1,30 +1,30 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Help = require('../components/Help');
+import React from 'react';
+import ReactRouter from 'react-router';
+import Help from '../components/Help';
 
-var HelpContainer = React.createClass({
+const HelpContainer = React.createClass({
 
 	// NOTE: contextTypes doesn't scale well, but ok for limited use such as with routers
 	contextTypes: {
 		router: React.PropTypes.object.isRequired
 	},
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       hasSetup: false,
       helpers: [],
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.getInfo(this.props);
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.getInfo(nextProps);
   },
 
-  getInfo: function(props) {
+  getInfo(props) {
     var helpers = props.user.helpers;
     var hasSetup = helpers;
     if (!hasSetup) {
@@ -43,15 +43,15 @@ var HelpContainer = React.createClass({
     )
   },
 
-  handleRedClick: function(e) {
+  handleRedClick(e) {
     alert('Red Alert!');
   },
 
-  handleYellowClick: function(e) {
+  handleYellowClick(e) {
     alert('Yellow Alert!');
   },
 
-  render: function() {
+  render() {
     if (!this.state.hasSetup) {
       return (
         <p>You need to go to setup!</p>
@@ -69,4 +69,4 @@ var HelpContainer = React.createClass({
   }
 });
 
-module.exports = HelpContainer;
+export default HelpContainer;

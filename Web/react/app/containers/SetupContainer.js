@@ -1,17 +1,17 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Rebase = require('re-base');
+import React from 'react';
+import ReactRouter from 'react-router';
+import Rebase from 're-base';
 var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
-var Setup = require('../components/Setup');
+import Setup from '../components/Setup';
 
-var SetupContainer = React.createClass({
+const SetupContainer = React.createClass({
 
 	// NOTE: contextTypes doesn't scale well, but ok for limited use such as with routers
 	contextTypes: {
 		router: React.PropTypes.object.isRequired
 	},
 
-	getInitialState: function() {
+	getInitialState() {
 		return {
 			'helpers': {},
 			isLoading: true,
@@ -20,7 +20,7 @@ var SetupContainer = React.createClass({
 
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
-	componentDidMount : function() {
+	componentDidMount() {
 		this.ref = base.syncState('users/' + this.props.user.key + '/helpers', {
 			context : this,
 			state : 'helpers',
@@ -31,13 +31,13 @@ var SetupContainer = React.createClass({
 		});
 	},
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		base.removeBinding(this.ref);
 	},
 
 	setupFields : {theName: 0, callNumber: 1, isRed: 2, isYellow: 3, key: 4, },
 
-  handleAddHelper: function(event) {
+  handleAddHelper(event) {
 		event.preventDefault();
 
 		var timestamp = (new Date()).getTime();
@@ -56,7 +56,7 @@ var SetupContainer = React.createClass({
 		event.target.reset();
   },
 
-  handleUpdateHelper: function(event) {
+  handleUpdateHelper(event) {
 		event.preventDefault();
 
 		var helper = {key: event.target[this.setupFields.key].value,
@@ -77,7 +77,7 @@ var SetupContainer = React.createClass({
 		this.props.onHelperShowOnly(helperIndex);
   },
 
-  handleDeleteHelper: function(helperKey, event) {
+  handleDeleteHelper(helperKey, event) {
 		event.preventDefault();
 
 		// NOTE: helpers is read back as an array from firebase, so can't access it the same way as when adding
@@ -90,7 +90,7 @@ var SetupContainer = React.createClass({
 		this.props.onHelperShowOnly(helperIndex);
   },
 
-	unsetOtherFlags: function (helpers, helperIndex, isRed, isYellow) {
+	unsetOtherFlags(helpers, helperIndex, isRed, isYellow) {
 		var unsetOtherFlag = function(helperIndex, flagName) {
 			helpers.forEach(function(h) {
 				if (h.key !== helperIndex) {
@@ -106,33 +106,33 @@ var SetupContainer = React.createClass({
 		}
 	},
 
-	handleUpdateTheName: function(event) {
+	handleUpdateTheName(event) {
 		this.setState({
 			inputHelperName: [event.target.value]
 		})
 	},
 
-	handleUpdateCallNumber: function(event) {
+	handleUpdateCallNumber(event) {
     this.setState({
         inputHelperNumber: [event.target.value]
       })
 	},
 
-	handleUpdateIsRed: function(helperIndex, event) {
+	handleUpdateIsRed(helperIndex, event) {
 		this.state.helpers[helperIndex].isRed = event.target.checked;
     this.setState({
         helpers: this.state.helpers,
       })
 	},
 
-	handleUpdateIsYellow: function(helperIndex, event) {
+	handleUpdateIsYellow(helperIndex, event) {
 		this.state.helpers[helperIndex].isYellow = event.target.checked;
     this.setState({
         helpers: this.state.helpers,
       })
 	},
 
-  render: function() {
+  render() {
     return (
 			<div>
 	      <Setup
@@ -153,4 +153,4 @@ var SetupContainer = React.createClass({
   }
 });
 
-module.exports = SetupContainer;
+export default SetupContainer;

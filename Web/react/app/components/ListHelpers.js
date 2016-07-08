@@ -1,8 +1,8 @@
-var React = require('react');
-var HelperForm = require('./HelperForm');
-var Constants = require('../core/constants');
+import React from 'react';
+import HelperForm from './HelperForm';
+import * as Constants from '../core/constants';
 
-function UpdateForm(props) {
+const UpdateForm = (props) => {
   return (
     props.canUpdate
     ?
@@ -20,7 +20,7 @@ function UpdateForm(props) {
   )
 }
 
-function HelperItem(props) {
+const HelperItem = (props) => {
   var helper = props.helper;
   var helperInfo = helper.theName + ' (' + helper.callNumber + ')';
   if (helperInfo.length > 17) {
@@ -40,7 +40,7 @@ function HelperItem(props) {
   )
 }
 
-function ItemHelper(props) {
+const ItemHelper = (props) => {
   return (
     <li className="list-group-item">
       <HelperItem {...props} />
@@ -48,7 +48,7 @@ function ItemHelper(props) {
     );
 }
 
-function HelperPanel(props) {
+const HelperPanel = (props) => {
   var helpers = props.helpers;
   return (
     <div className="panel panel-default">
@@ -76,7 +76,7 @@ function HelperPanel(props) {
   )
 }
 
-function ListHelpers(props){
+export default function ListHelpers(props) {
   var helpers = props.helpers;
   if (helpers) {
     return (
@@ -116,5 +116,3 @@ function ListHelpers(props){
     return <div>Please add up to {Constants.MaxHelpers} helpers here</div>
   }
 }
-
-module.exports = ListHelpers;
