@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactRouter from 'react-router';
 import Rebase from 're-base';
-var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
+// var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
+var firebaseConfig = {
+  apiKey: 'AIzaSyCW38Sypy_cF7_o1pU3fY7SctOeOuJAtNk',
+  authDomain: 'geo911-help-rescue-me.firebaseapp.com',
+  databaseURL: 'https://geo911-help-rescue-me.firebaseio.com/',
+  storageBucket: 'geo911-help-rescue-me.appspot.com',
+};
+var base = Rebase.createClass(firebaseConfig);
 import Register from '../components/Register';
 
 const RegisterContainer = React.createClass({
@@ -41,6 +48,14 @@ const RegisterContainer = React.createClass({
       password: event.target[2].value,
     };
 
+		base.createUser({
+			email: user.email,
+			password: user.password,
+		}, this.createUserSuccess.bind(null, user));
+
+  },
+
+	createUserSuccess: function(user, d) {
 		this.state.users[user.key] = user;
 
     this.setState({ users : this.state.users});
@@ -48,7 +63,7 @@ const RegisterContainer = React.createClass({
     this.props.onAuthorize(user);
 
     this.context.router.push('/');
-  },
+	},
 
 	handleUpdateUserName(event) {
     this.setState({ inputUserName: [event.target.value] })

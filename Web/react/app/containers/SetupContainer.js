@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactRouter from 'react-router';
 import Rebase from 're-base';
-var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
+// var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
+var firebaseConfig = {
+  apiKey: 'AIzaSyCW38Sypy_cF7_o1pU3fY7SctOeOuJAtNk',
+  authDomain: 'geo911-help-rescue-me.firebaseapp.com',
+  databaseURL: 'https://geo911-help-rescue-me.firebaseio.com/',
+  storageBucket: 'geo911-help-rescue-me.appspot.com',
+};
+var base = Rebase.createClass(firebaseConfig);
 import Setup from '../components/Setup';
 
 const SetupContainer = React.createClass({

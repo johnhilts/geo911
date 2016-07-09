@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactRouter from 'react-router';
 import Rebase from 're-base';
-var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
+// var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
+var firebaseConfig = {
+  apiKey: 'AIzaSyCW38Sypy_cF7_o1pU3fY7SctOeOuJAtNk',
+  authDomain: 'geo911-help-rescue-me.firebaseapp.com',
+  databaseURL: 'https://geo911-help-rescue-me.firebaseio.com/',
+  storageBucket: 'geo911-help-rescue-me.appspot.com',
+};
+var base = Rebase.createClass(firebaseConfig);
 import Login from '../components/Login';
 
 const LoginContainer = React.createClass({
@@ -18,17 +25,29 @@ const LoginContainer = React.createClass({
     }
   },
 
+	loginFields : {email: 0, password: 1, },
+
   handleLoginSubmit(event) {
     event.preventDefault();
 
-    this.setState({password: event.target[1].value});
+    var loginInput = {email: event.target[this.loginFields.email].value, password: event.target[this.loginFields.password].value};
+
+    base.authWithPassword({
+      email    : loginInput.email,
+      password : loginInput.password,
+    }, this.authUserSuccess.bind(null, loginInput));
+  },
+
+  authUserSuccess(loginInput, d) {
+
+    this.setState({password: loginInput.password});
 
 		this.ref = base.fetch('users', {
 			context : this,
 			asArray : true,
       queries: {
         orderByChild: 'email',
-        equalTo: event.target[0].value,
+        equalTo: loginInput.email,
       },
       then(users) {
         if (!users && !users.length) {
