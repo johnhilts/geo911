@@ -51,7 +51,7 @@ const SetupContainer = React.createClass({
 		var helper = {key: 'helper-' + timestamp, theName: event.target[this.setupFields.theName].value, callNumber: event.target[this.setupFields.callNumber].value,
 			isRed: event.target[this.setupFields.isRed].checked, isYellow: event.target[this.setupFields.isYellow].checked, };
 
-		this.state.helpers[helper.key] = helper;
+		this.state.helpers.push(helper);
 
 		if (helper.isRed || helper.isYellow) {
 			this.unsetOtherFlags(this.state.helpers, helper.key, helper.isRed, helper.isYellow);
