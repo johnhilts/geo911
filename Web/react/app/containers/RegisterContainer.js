@@ -45,12 +45,12 @@ const RegisterContainer = React.createClass({
       key: 'user-' + timestamp,
       userName: event.target[0].value,
       email: event.target[1].value,
-      password: event.target[2].value,
     };
+		let password = event.target[2].value;
 
 		base.createUser({
 			email: user.email,
-			password: user.password,
+			password: password,
 		}, this.createUserSuccess.bind(null, user));
 
   },

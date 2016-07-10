@@ -38,7 +38,12 @@ const LoginContainer = React.createClass({
     }, this.authUserSuccess.bind(null, loginInput));
   },
 
-  authUserSuccess(loginInput, d) {
+  authUserSuccess(loginInput, authError) {
+
+    if (authError) {
+      alert(authError.message);
+      return;
+    }
 
     this.setState({password: loginInput.password});
 
@@ -55,10 +60,6 @@ const LoginContainer = React.createClass({
           return;
         }
         var user = users[0];
-        if (user.password !== this.state.password) {
-          alert('invalid email or password');
-          return;
-        }
 
         // re-read helpers asArray since above asArray doesn't seem to extend to nested objects
         this.ref = base.fetch('users/' + user.key + '/helpers', {
