@@ -28,7 +28,7 @@ const SetupContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount() {
-		this.ref = base.syncState('users/' + this.props.user.key + '/helpers', {
+		this.ref = base.syncState('users/' + this.props.user.owner + '/helpers', {
 			context : this,
 			state : 'helpers',
 			asArray: true,

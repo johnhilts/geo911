@@ -29,7 +29,7 @@ var styles = {
 
 const MainContainer = React.createClass({
   getInitialState() {
-    var user = {key: 0};
+    var user = {owner: 0};
 
 		var localStorageRef = localStorage.getItem('user');
 
@@ -47,7 +47,7 @@ const MainContainer = React.createClass({
   },
 
   handleDeauthorization() {
-    var user = {key: 0};
+    var user = {owner: 0};
     base.unauth();
     return this.handleSaveUser(user);
   },

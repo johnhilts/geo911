@@ -47,22 +47,16 @@ const LoginContainer = React.createClass({
 
     this.setState({password: loginInput.password});
 
-		this.ref = base.fetch('users', {
+		this.ref = base.fetch('users/' + authData.uid, { // NOTE: Firebase's security rules prevent a user from accessing someone else's data
 			context : this,
-			asArray : true,
-      queries: {
-        orderByChild: 'email',
-        equalTo: loginInput.email,
-      },
-      then(users) {
-        if (!users && !users.length) {
+      then(user) {
+        if (!user) {
           alert('Login Failed');
           return;
         }
-        var user = users[0];
 
-        // re-read helpers asArray since above asArray doesn't seem to extend to nested objects
-        this.ref = base.fetch('users/' + user.key + '/helpers', {
+        // re-read helpers asArray
+        this.ref = base.fetch('users/' + user.owner + '/helpers', {
           context : this,
           asArray : true,
           then(helpers) {

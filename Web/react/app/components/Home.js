@@ -30,7 +30,7 @@ const Helper = (props) => {
 
 const Home = (props) => {
   return (
-    props.user && props.user.key !== 0
+    props.user && props.user.owner !== 0
     ? <Helper {...props} />
     : <LoginContainer user={props.user} onAuthorize={props.onAuthorize} />
   )

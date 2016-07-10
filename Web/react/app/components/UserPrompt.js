@@ -6,7 +6,7 @@ import LogoffLink from './LogoffLink';
 
 export default function UserPrompt (props) {
     return (
-      props.user.key === 0
+      props.user.owner === 0
       ?
       <p>
         <LoginLink />

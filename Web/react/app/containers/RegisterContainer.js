@@ -37,16 +37,16 @@ const RegisterContainer = React.createClass({
 		base.removeBinding(this.ref);
 	},
 
+	registerFields : {name: 0, email: 1, password: 2, },
+
   handleRegisterSubmit(event) {
     event.preventDefault();
 
-		let timestamp = (new Date()).getTime();
     let user = {
-      key: 'user-' + timestamp,
-      userName: event.target[0].value,
-      email: event.target[1].value,
+      userName: event.target[this.registerFields.name].value,
+      email: event.target[this.registerFields.email].value,
     };
-		let password = event.target[2].value;
+		let password = event.target[this.registerFields.password].value;
 
 		base.createUser({
 			email: user.email,
@@ -60,8 +60,10 @@ const RegisterContainer = React.createClass({
 			alert(err.message);
 			return;
 		}
-		
-		this.state.users[user.key] = user;
+
+		user.owner = authData.uid;
+
+		this.state.users[user.owner] = user;
 
     this.setState({ users : this.state.users});
 
