@@ -55,7 +55,12 @@ const RegisterContainer = React.createClass({
 
   },
 
-	createUserSuccess: function(user, d) {
+	createUserSuccess: function(user, err, authData) {
+		if (err) {
+			alert(err.message);
+			return;
+		}
+		
 		this.state.users[user.key] = user;
 
     this.setState({ users : this.state.users});

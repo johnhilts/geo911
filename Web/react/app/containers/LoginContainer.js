@@ -38,10 +38,10 @@ const LoginContainer = React.createClass({
     }, this.authUserSuccess.bind(null, loginInput));
   },
 
-  authUserSuccess(loginInput, authError) {
+  authUserSuccess(loginInput, err, authData) {
 
-    if (authError) {
-      alert(authError.message);
+    if (err) {
+      alert(err.message);
       return;
     }
 
