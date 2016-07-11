@@ -1,14 +1,8 @@
 import React from 'react';
 import ReactRouter from 'react-router';
 import Rebase from 're-base';
-// var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
-var firebaseConfig = {
-  apiKey: 'AIzaSyCW38Sypy_cF7_o1pU3fY7SctOeOuJAtNk',
-  authDomain: 'geo911-help-rescue-me.firebaseapp.com',
-  databaseURL: 'https://geo911-help-rescue-me.firebaseio.com/',
-  storageBucket: 'geo911-help-rescue-me.appspot.com',
-};
-var base = Rebase.createClass(firebaseConfig);
+import * as db from '../core/database';
+var base = Rebase.createClass(db.firebaseConfig);
 import Login from '../components/Login';
 
 const LoginContainer = React.createClass({
@@ -47,7 +41,7 @@ const LoginContainer = React.createClass({
 
     this.setState({password: loginInput.password});
 
-		this.ref = base.fetch('users/' + authData.uid, { // NOTE: Firebase's security rules prevent a user from accessing someone else's data
+		this.ref = base.fetch(db.getUserRoot(authData.uid), { // NOTE: Firebase's security rules prevent a user from accessing someone else's data
 			context : this,
       then(user) {
         if (!user) {
@@ -56,7 +50,7 @@ const LoginContainer = React.createClass({
         }
 
         // re-read helpers asArray
-        this.ref = base.fetch('users/' + user.owner + '/helpers', {
+        this.ref = base.fetch(db.getUserRoot(user.owner) + '/helpers', {
           context : this,
           asArray : true,
           then(helpers) {

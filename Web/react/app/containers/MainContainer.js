@@ -2,13 +2,8 @@ import React from 'react';
 import ReactRouter, {Link} from 'react-router';
 import UserPrompt from '../components/UserPrompt';
 import Rebase from 're-base';
-var firebaseConfig = {
-  apiKey: 'AIzaSyCW38Sypy_cF7_o1pU3fY7SctOeOuJAtNk',
-  authDomain: 'geo911-help-rescue-me.firebaseapp.com',
-  databaseURL: 'https://geo911-help-rescue-me.firebaseio.com/',
-  storageBucket: 'geo911-help-rescue-me.appspot.com',
-};
-var base = Rebase.createClass(firebaseConfig);
+import * as db from '../core/database';
+var base = Rebase.createClass(db.firebaseConfig);
 
 var styles = {
   header: {

@@ -1,14 +1,8 @@
 import React from 'react';
 import ReactRouter from 'react-router';
 import Rebase from 're-base';
-// var base = Rebase.createClass('https://geo911-help-rescue-me.firebaseio.com/');
-var firebaseConfig = {
-  apiKey: 'AIzaSyCW38Sypy_cF7_o1pU3fY7SctOeOuJAtNk',
-  authDomain: 'geo911-help-rescue-me.firebaseapp.com',
-  databaseURL: 'https://geo911-help-rescue-me.firebaseio.com/',
-  storageBucket: 'geo911-help-rescue-me.appspot.com',
-};
-var base = Rebase.createClass(firebaseConfig);
+import * as db from '../core/database';
+var base = Rebase.createClass(db.firebaseConfig);
 import Setup from '../components/Setup';
 
 const SetupContainer = React.createClass({
@@ -28,7 +22,7 @@ const SetupContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount() {
-		this.ref = base.syncState('users/' + this.props.user.owner + '/helpers', {
+		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/helpers', {
 			context : this,
 			state : 'helpers',
 			asArray: true,
