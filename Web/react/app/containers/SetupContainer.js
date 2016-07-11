@@ -22,6 +22,15 @@ const SetupContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount() {
+    if (!this.props.user || !this.props.user.owner || this.props.user.owner == 0) {
+      this.context.router.push({
+        pathname: '/',
+        state: {
+          user: {}
+        }
+      })
+    }
+
 		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/helpers', {
 			context : this,
 			state : 'helpers',
